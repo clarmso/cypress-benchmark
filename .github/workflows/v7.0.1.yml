@@ -16,6 +16,7 @@ jobs:
     strategy:
       matrix:
         browser: [chrome, firefox, electron]
+        headless: [true, false]
     steps:
       - name: Checkout 🛎
         uses: actions/checkout@v2
@@ -34,4 +35,7 @@ jobs:
           install: false
           working-directory: v7.0.1
           browser: ${{ matrix.browser }}
-          headless: true
+          headless: ${{ matrix.headless }}
+      
+      - name: Upload results (todo) 🌐
+        run: echo "💩"
