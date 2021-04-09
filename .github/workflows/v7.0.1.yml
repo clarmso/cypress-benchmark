@@ -26,5 +26,5 @@ jobs:
           working-directory: v7.0.1
 
       - name: Run tests (w/ Electron ⚛️) 🧪
-        run: pwd; cypress run
+        run: npx cypress run
         working-directory: v7.0.1
