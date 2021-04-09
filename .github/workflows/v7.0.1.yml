@@ -11,9 +11,12 @@ jobs:
     # Docker image with Cypress pre-installed
     # https://github.com/cypress-io/cypress-docker-images/tree/master/included
     container: cypress/browsers:node14.16.0-chrome89-ff86
+    strategy:
+      matrix:
+        browser: [chrome, electron]
     steps:
       - name: Checkout 🛎
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
 
       # normally we would NOT need to install NPM dependencies
       # but in this repo we are using additional plugins listed in package.json
@@ -28,13 +31,7 @@ jobs:
       - name: Run tests 🧪
         uses: cypress-io/github-action@v2
         with:
-          headless: true
+          build: npx cypress info
+          install: false
           working-directory: v7.0.1
-          browser: chrome
-  
-      - name: Run tests 🧪
-        uses: cypress-io/github-action@v2
-        with:
-          headless: true
-          working-directory: v7.0.1
-          browser: electron
+          browser: ${{ matrix.browser }}
