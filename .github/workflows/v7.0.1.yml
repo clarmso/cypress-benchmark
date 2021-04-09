@@ -4,6 +4,7 @@ on:
   push:
     paths: 
     - v7.0.1/**
+    - .github/workflows/v7.0.1.yml
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
