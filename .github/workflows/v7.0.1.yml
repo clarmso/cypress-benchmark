@@ -1,0 +1,30 @@
+
+name: included
+on: 
+  push:
+    paths: 
+    - v7.0.1/**
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+    # Docker image with Cypress pre-installed
+    # https://github.com/cypress-io/cypress-docker-images/tree/master/included
+    container: cypress/browsers:node14.16.0-chrome89-ff86
+    steps:
+      - name: Checkout 🛎
+        uses: actions/checkout@v1
+
+      # normally we would NOT need to install NPM dependencies
+      # but in this repo we are using additional plugins listed in package.json
+      # thus we need to install them
+      - name: Install dependencies 📦
+        # we could simply run "npm ci" but that would not cache dependencies
+        # thus we can use this 3rd party action
+        uses: bahmutov/npm-install@v1
+        with:
+          working-directory: v7.0.1
+
+      - name: Run tests 🧪
+        run: cypress run --headless --browser chrome
+        with:
+          working-directory: v7.0.1
