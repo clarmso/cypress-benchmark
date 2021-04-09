@@ -24,6 +24,6 @@ jobs:
         with:
           working-directory: v7.0.1
 
-      - name: Run tests 🧪
-        run: cypress run --headless --browser chrome
+      - name: Run tests (w/ Electron) 🧪
+        run: cypress run
         working-directory: v7.0.1
