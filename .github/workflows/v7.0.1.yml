@@ -26,5 +26,4 @@ jobs:
 
       - name: Run tests 🧪
         run: cypress run --headless --browser chrome
-        with:
-          working-directory: v7.0.1
+        working-directory: v7.0.1
