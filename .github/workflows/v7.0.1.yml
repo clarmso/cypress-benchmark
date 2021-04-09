@@ -32,3 +32,4 @@ jobs:
           install: false
           working-directory: v7.0.1
           browser: ${{ matrix.browser }}
+          headless: true
