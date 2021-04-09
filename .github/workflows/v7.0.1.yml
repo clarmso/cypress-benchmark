@@ -6,7 +6,7 @@ on:
     - v7.0.1/**
     - .github/workflows/v7.0.1.yml
 jobs:
-  prepare:
+  cypress-run-v701:
     runs-on: ubuntu-20.04
     # Docker image with Cypress pre-installed
     # https://github.com/cypress-io/cypress-docker-images/tree/master/included
@@ -25,29 +25,14 @@ jobs:
         with:
           working-directory: v7.0.1
 
-  cypress-electron:
-    name: Use electron to run the tests ⚛️
-    needs: prepare
-    runs-on: ubuntu-20.04
-    steps:
-      - name: Run tests 🧪
+      - name: Run tests (w/ Electron ⚛️) 🧪
         run: npx cypress run
         working-directory: v7.0.1
 
-  cypress-chrome:
-    name: Use chrome to run the tests 🥱
-    needs: prepare
-    runs-on: ubuntu-20.04
-    steps:
-      - name: Run tests 🧪
+      - name: Run tests (w/ Chrome 🥱) 🧪
         run: npx cypress run --headless --browser chrome
         working-directory: v7.0.1
 
-  cypress-firefox:
-    name: Use chrome to run the tests 🦊
-    needs: prepare
-    runs-on: ubuntu-20.04
-    steps:
-      - name: Run tests 🧪
+      - name: Run tests (w/ Firefox 🦊) 🧪
         run: npx cypress run --headless --browser firefox
         working-directory: v7.0.1
